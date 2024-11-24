@@ -38,7 +38,7 @@ uv run generate.py --model mlx-community/Qwen2.5-0.5B-bf16 --prompt "Tell me a s
 This project leverages the work of amazing open-source projects listed below. Special thanks to them for making such valuable resources available. The different sources explain the different coding styles in different files.  
 I removed a lot of features that I did not need for this project but I tried not to delete anything from the original files when I simplified functions or objects. I commented out unnecessary parts with '###' so my comments can be more easily distinguished from those in the original project. 
 
-License : it is my understanding that the Apple Licence (MIT) is the most restrictive and therefore applies to this project. See more details about the individual parts below.
+License : it is my understanding that the Apple License (MIT) is the most restrictive and therefore applies to this project. See more details about the individual parts below.
  
 1. mlx-lm : [mlx-example-repo](https://github.com/ml-explore/mlx-examples/tree/main/llms/mlx_lm)
 - root files
