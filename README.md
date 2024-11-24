@@ -34,25 +34,25 @@ The default model is defined in constants.py. To specify a model:
 uv run generate.py --model mlx-community/Qwen2.5-0.5B-bf16 --prompt "Tell me a story about a dog that loves ice"
 ```
 
-## Sources and Licences
+## Sources and Licenses
 This project leverages the work of amazing open-source projects listed below. Special thanks to them for making such valuable resources available. The different sources explain the different coding styles in different files.  
 I removed a lot of features that I did not need for this project but I tried not to delete anything from the original files when I simplified functions or objects. I commented out unnecessary parts with '###' so my comments can be more easily distinguished from those in the original project. 
 
-Licence : it is my understanding that the Apple Licence (MIT) is the most restrictive and therefore applies to this project. See more details about the individual parts below.
+License : it is my understanding that the Apple Licence (MIT) is the most restrictive and therefore applies to this project. See more details about the individual parts below.
  
 1. mlx-lm : [mlx-example-repo](https://github.com/ml-explore/mlx-examples/tree/main/llms/mlx_lm)
 - root files
 - models/*  
-see [licence](https://github.com/ml-explore/mlx-examples/blob/main/LICENSE)
+see [license](https://github.com/ml-explore/mlx-examples/blob/main/LICENSE)
 
 2. transformers: [HuggingFace transformers](https://github.com/huggingface/transformers/tree/main/src/transformers)
 - tokenization/* :substantially all files were copied from the HF transformers library. The objective was to use PretrrainedTokenizers from transformers but not the rest since it's covered by mlx-examples. Pytorch and Tensorflow utils were removed as well as all upload utils. I tried to consolidate files when it made sense to me (initial source in the transformers library is clearly identified in the files)  
-see [licence](https://github.com/huggingface/transformers/blob/main/LICENSE)
+see [license](https://github.com/huggingface/transformers/blob/main/LICENSE)
 
 3. entropix : [entropix](https://github.com/xjdr-alt/entropix)  
 More specifically [entropix-local mlx](https://github.com/xjdr-alt/entropix-local/tree/research/entropix/local/mlx) but also heavily inspired by [SmolLM x Entropix](https://github.com/SinatrasC/entropix-smollm)   
 - entropix/* : Most of the code was lifted from the entropix-local repo (research branch) and adapted to this project. See notes for more information on what part of the project were implemented here.  
-see [licence](https://github.com/xjdr-alt/entropix-local/blob/main/LICENSE)
+see [license](https://github.com/xjdr-alt/entropix-local/blob/main/LICENSE)
   
   
 ## Models
