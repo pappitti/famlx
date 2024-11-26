@@ -184,13 +184,19 @@ def visualize_token_entropy_varentropy(
             aspectmode='manual',
             aspectratio=dict(x=1, y=1, z=0.5),
         ),
-        margin=dict(l=0, r=0, b=0, t=40),
-        title='',
+        margin=dict(l=0, r=0, b=0, t=80),  # Increased top margin to accommodate buttons and title
+        title=dict(
+            text=sampler_config.model_path,
+            y=0.95,  # Move title down slightly
+            x=0.5,
+            xanchor='center',
+            yanchor='top'
+        ),
         updatemenus=[dict(
             type="buttons",
             direction="right",
             x=0.0,
-            y=1.1,
+            y=1.1,  # Move buttons to the very top
             xanchor='left',
             yanchor='top',
             pad={"r": 10, "t": 10},
@@ -212,43 +218,43 @@ def visualize_token_entropy_varentropy(
     fig.write_html(interactive_filename, include_plotlyjs=True, full_html=True)
     print(f"3D token entropy visualization saved to {interactive_filename}")
 
-    ### disabling exports for now
-    # # Export data to file
-    # export_data = {
-    #     "tokens": [tokenizer.decode([token]) for token in generated_tokens],
-    #     "logits_entropy": metrics_data['logits_entropy'],
-    #     "logits_varentropy": metrics_data['logits_varentropy'],
-    #     "attention_entropy": metrics_data['attention_entropy'],
-    #     "attention_varentropy": metrics_data['attention_varentropy'],
-    #     "thresholds": {
-    #         "logits_entropy": {
-    #             "low": sampler_config.low_logits_entropy_threshold,
-    #             "medium": sampler_config.medium_logits_entropy_threshold,
-    #             "high": sampler_config.high_logits_entropy_threshold
-    #         },
-    #         "logits_varentropy": {
-    #             "low": sampler_config.low_logits_varentropy_threshold,
-    #             "medium": sampler_config.medium_logits_varentropy_threshold,
-    #             "high": sampler_config.high_logits_varentropy_threshold
-    #         },
-    #         "attention_entropy": {
-    #             "low": sampler_config.low_attention_entropy_threshold,
-    #             "medium": sampler_config.medium_attention_entropy_threshold,
-    #             "high": sampler_config.high_attention_entropy_threshold
-    #         },
-    #         "attention_varentropy": {
-    #             "low": sampler_config.low_attention_varentropy_threshold,
-    #             "medium": sampler_config.medium_attention_varentropy_threshold,
-    #             "high": sampler_config.high_attention_varentropy_threshold
-    #         }
-    #     }
-    # }
+    # Export data to file
+    export_data = {
+        "model": sampler_config.model_path,
+        "tokens": [tokenizer.decode([token]) for token in generated_tokens],
+        "logits_entropy": metrics_data['logits_entropy'],
+        "logits_varentropy": metrics_data['logits_varentropy'],
+        "attention_entropy": metrics_data['attn_entropy'],
+        "attention_varentropy": metrics_data['attn_varentropy'],
+        "thresholds": {
+            "logits_entropy": {
+                "low": sampler_config.low_logits_entropy_threshold,
+                "medium": sampler_config.medium_logits_entropy_threshold,
+                "high": sampler_config.high_logits_entropy_threshold
+            },
+            "logits_varentropy": {
+                "low": sampler_config.low_logits_varentropy_threshold,
+                "medium": sampler_config.medium_logits_varentropy_threshold,
+                "high": sampler_config.high_logits_varentropy_threshold
+            },
+            "attention_entropy": {
+                "low": sampler_config.low_attention_entropy_threshold,
+                "medium": sampler_config.medium_attention_entropy_threshold,
+                "high": sampler_config.high_attention_entropy_threshold
+            },
+            "attention_varentropy": {
+                "low": sampler_config.low_attention_varentropy_threshold,
+                "medium": sampler_config.medium_attention_varentropy_threshold,
+                "high": sampler_config.high_attention_varentropy_threshold
+            }
+        }
+    }
 
-    # # Save the data to a file using the same timestamp
-    # data_filename = f"entropix/results/entropy_data_{timestamp}.json"
-    # with open(data_filename, 'w') as f:
-    #     json.dump(export_data, f, indent=2)
-    # print(f"Data exported to {data_filename}")
+    # Save the data to a file using the same timestamp
+    data_filename = f"entropix/results/entropy_data_{timestamp}.json"
+    with open(data_filename, 'w') as f:
+        json.dump(export_data, f, indent=2)
+    print(f"Data exported to {data_filename}")
 
     return fig
 

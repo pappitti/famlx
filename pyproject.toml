@@ -12,6 +12,7 @@ dependencies = [
     "plotly>=5.24.1",
     "protobuf>=5.28.3",
     "regex>=2024.11.6",
+    "scipy>=1.14.1",
     "sentencepiece>=0.2.0",
     "tokenizers>=0.20.3",
 ]

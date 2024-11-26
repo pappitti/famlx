@@ -333,17 +333,17 @@ def generate_step(
         else: ### TODO : let user chose the mlx sampler or the _entropix_sampler
             metrics = None
             ### default sampler
-            # y = sampling(logits)
+            y = sampling(logits)
 
             ### entropix _sampler for debugging
-            y = _entropix_sampling(
-                logits,
-                temp,
-                top_p,
-                50, ### top_k TODO : make this a parameter
-                min_p,
-            )
-            y = y.squeeze(0) ### removing batch dimension that is returned by entropix sampler
+            # y = _entropix_sampling(
+            #     logits,
+            #     temp,
+            #     top_p,
+            #     50, ### top_k TODO : make this a parameter
+            #     min_p,
+            # )
+            # y = y.squeeze(0) ### removing batch dimension that is returned by entropix sampler
 
         return y, logprobs.squeeze(0), metrics ### added metrics for entropix viz  
 
@@ -485,7 +485,7 @@ def generate(
                     print(detokenizer.last_segment, end="", flush=True)
 
             if entropix:
-                # metrics = calculate_metrics(logits, scores, n) ### can get metrics directly from the sampling?
+                # metrics = calculate_metrics(logits, scores, n) ### get metrics directly from the sampling
                 for key in metrics_data.keys():
                     if key in metrics:
                         if key == "sampler_state":
